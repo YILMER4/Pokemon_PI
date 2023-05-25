@@ -2,15 +2,34 @@ const {Router} = require('express');
 const {getPokemonHandler, getPokemonsHandler, createPokemonHandler}= require("./../handlers/pokemonsHandlers")
 
 const pokemonsRouter = Router();
-//aqui estan los endpoints
 
+//aplicamos validacion para evitar datos vacios
+const validate = (req, res, next)=>{
+    const {id, name, image, hp, atack, defense, speed, height, weight}= req.body;
+    if (!id) return res.status(400).json({error:"missing id"});
+    if (!name ) return res.status(400).json({error:"missing name"});
+    if (!image) return res.status(400).json({error:"missing image"});
+    if ( !hp) return res.status(400).json({error:"missing hp"});
+    if (!atack ) return res.status(400).json({error:"missing atack"});
+    if (!defense) return res.status(400).json({error:"missing defense"});
+    if (!speed ) return res.status(400).json({error:"missing speed"});
+    if ( !height) return res.status(400).json({error:"missing height"});
+    if (!weight) return res.status(400).json({error:"missing weight"});
+
+    next();
+};
+
+
+
+
+//aqui estan los endpoints
 
 pokemonsRouter.get("/", getPokemonsHandler);
 
 pokemonsRouter.get("/:id", getPokemonHandler);
 
 
-pokemonsRouter.post("/", createPokemonHandler);
+pokemonsRouter.post("/", validate, createPokemonHandler);
 //NIY: Not Implemented Yet
 module.exports= pokemonsRouter;
 
