@@ -1,20 +1,20 @@
 const {Router}= require('express');
-
+const {getTypeHandler}= require("../handlers/typeHandlers")
 
 const typeRouter = Router();
 
 // aca estan los endpoints
 
-typeRouter.get("/",(req,res)=>{
-    res.send("Estoy en types")
-});
 
-typeRouter.get("/:id",(req,res)=>{
-    res.send("Detalle del type")
-});
-typeRouter.post("/",(req,res)=>{
-    res.send("NIY: CREACION DE UN POST")
-});
+typeRouter.get("/",getTypeHandler);
+
+// typeRouter.get("/:id",(req,res)=>{//params
+
+//     res.send("Detalle del type")
+// });
+// typeRouter.post("/",(req,res)=>{
+//     res.send("NIY: CREACION DE UN POST")
+// });
 
 
 module.exports= typeRouter;
