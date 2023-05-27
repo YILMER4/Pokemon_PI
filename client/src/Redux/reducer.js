@@ -1,3 +1,5 @@
+import {GET_POKEMONS} from "./actions";
+
 
 const inicialState={ //estado global
     pokemos:[],
@@ -7,12 +9,13 @@ const inicialState={ //estado global
 const rootReducer = (state= inicialState, action)=>{
 
     switch (action.type) {
-        case value:
-            
-            break;
+        case GET_POKEMONS:
+            return{...state, pokemons:action.payload};
     
         default:
             return{...state};
     }
 
 }
+
+export default rootReducer;
